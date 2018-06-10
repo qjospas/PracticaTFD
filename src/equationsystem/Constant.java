@@ -6,6 +6,11 @@ public class Constant extends Term {
 	public Constant(float value) {
 		super(value);
 	}
+	
+	public String getName()
+	{
+		return "";
+	}
 
 	@Override
 	public Boolean equal(Term term) {
@@ -19,6 +24,11 @@ public class Constant extends Term {
 
 	@Override
 	public void dispatch(TermVisitor termVisitor) {
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 }
