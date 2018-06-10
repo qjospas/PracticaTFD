@@ -27,4 +27,12 @@ public class TestConstant {
 		Constant b= (Constant)a.clon();
 		assertTrue( a.equal(b) );
 	}
+	
+	@Test
+	public void TestMultiply()
+	{
+		Constant a= new Constant( 5.33f );
+		a.multiply(2.0f);
+		assertEquals( 10.66f , a.getValue(), 0.01f);
+	}
 }
