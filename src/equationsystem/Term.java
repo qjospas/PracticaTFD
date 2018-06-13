@@ -3,22 +3,25 @@ package equationsystem;
 import java.util.Set;
 
 public abstract class Term {
+	protected float value;
+	
 	public Term(float value) {
+		this.value= value;
 	}
 	
 	public float getValue()
 	{
-		return 0.0f;
+		return value;
 	}
 	
 	public void multiply(float value)
 	{
-		
+		this.value*= value;
 	}
 	
 	public Boolean hasName(String name)
 	{
-		return false;
+		return name.isEmpty();
 	}
 	
 	public Boolean hasName(Set<String> nameSet)
@@ -28,6 +31,10 @@ public abstract class Term {
 	
 	public Boolean equal(Term term)
 	{
+		if ( term != null) 
+		{
+			return this.value == term.value;
+		}
 		return false;
 	}
 	
@@ -36,7 +43,7 @@ public abstract class Term {
 	@Override
 	public String toString()
 	{
-		return "";
+		return String.format("%+.2f", this.value);
 	}
 	
 	public abstract void dispatch(TermVisitor termVisitor);

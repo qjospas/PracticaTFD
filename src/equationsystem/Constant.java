@@ -7,11 +7,6 @@ public class Constant extends Term {
 		super(value);
 	}
 	
-	public String getName()
-	{
-		return "";
-	}
-
 	@Override
 	public Boolean equal(Term term) {
 		return super.equal(term);
@@ -19,11 +14,12 @@ public class Constant extends Term {
 	
 	@Override
 	public Term clon() {
-		return null;
+		return new Constant(this.value);
 	}
 
 	@Override
 	public void dispatch(TermVisitor termVisitor) {
+		termVisitor.visit(this);
 	}
 	
 	@Override

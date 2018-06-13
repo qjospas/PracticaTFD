@@ -35,6 +35,19 @@ public class TestExpression {
 	}
 	
 	@Test
+	public void testAddTwice()
+	{
+		Expression expr= new Expression();
+		Variable a= new Variable(3.0f, "x");
+		Variable b= new Variable(7.0f, "x");
+		expr.add(a);
+		expr.add(b);
+		assertFalse( expr.empty() );
+		//Ignore second variable
+		assertEquals( 3.0f ,expr.getValue("x"), 0.01f );
+	}
+	
+	@Test
 	public void testAddExpressionGetVariable()
 	{
 		Expression expr1= new Expression();
@@ -84,9 +97,9 @@ public class TestExpression {
 	public void testSimplify()
 	{
 		List<Float> valueList1 = Arrays.asList(27.1f, 10.0f, 14.5f, 5.67f);
-		Set<String> nameSet1 = new HashSet<>(Arrays.asList("a", "b", "c" , "b"));
+		List<String> nameSet1 = Arrays.asList("a", "b", "c" , "b");
 		List<Float> valueList2 = Arrays.asList(27.1f, 15.67f, 14.5f);
-		Set<String> nameSet2 = new HashSet<>(Arrays.asList("a", "b", "c"));
+		List<String> nameSet2 = Arrays.asList("a", "b", "c");
 		Expression expr1= new Expression();
 		Expression expr2= new Expression();
 		
@@ -107,17 +120,15 @@ public class TestExpression {
 		}
 		
 		expr1.simplify("a");
-		
-		assertFalse( expr2.equal(expr2) );
-		
+		//expressions are equivalent but no equal
+		assertFalse( expr1.equal(expr2) );
 		expr1.simplify("b");
-		
-		assertTrue( expr2.equal(expr2) );
+		assertTrue( expr1.equal(expr2) );
 	}
 	
 	
 	@Test
-	public void testGetNameSpace()
+	public void testGetNameSet()
 	{
 		Set<String> nameSet = new HashSet<>(Arrays.asList("a", "b", "c"));
 		Expression expr1= new Expression();
@@ -159,6 +170,6 @@ public class TestExpression {
 		expr.add(v);
         expr.apply("a" , 2.0f );
 
-		assertEquals( 10.0f ,expr.getValue("a"), 0.01f );
+		assertEquals( 10.0f ,expr.getValue(), 0.01f );
 	}
 }
