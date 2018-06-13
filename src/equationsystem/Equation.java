@@ -73,7 +73,7 @@ public class Equation {
 		return false;
 	}
 	
-	public Expression clon()
+	public Equation clon()
 	{
 		return null;
 	}
