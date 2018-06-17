@@ -87,7 +87,7 @@ public class Expression {
 	
 	public void simplify()
 	{
-		
+		simplify("");
 	}
 	
 	public float getValue(String name)
