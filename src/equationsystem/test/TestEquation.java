@@ -58,12 +58,34 @@ public class TestEquation {
 	}
 	
 	@Test
+	public void addEquationTest()
+	{
+		Equation eq1= EquationBuilder.get("2x=3");
+		Equation eq2= EquationBuilder.get("3x+5a=3x+5a");
+		Equation eq3= EquationBuilder.get("2x+3x+5a=3+3x+5a");
+		eq1.add(eq2);
+
+		assertTrue(eq1.equal(eq3));
+	}
+	
+	@Test
 	public void applyTest()
 	{
 		Equation eq1 = EquationBuilder.get("5a=10");
 		Equation eq2 = EquationBuilder.get("10=10");
 		
 		eq1.apply("a", 2.0f);
+		
+		assertTrue(eq1.equal(eq2));
+	}
+	
+	@Test
+	public void invertTest()
+	{
+		Equation eq1 = EquationBuilder.get("5a+3b=7x+2y");
+		Equation eq2 = EquationBuilder.get("7x+2y=5a+3b");
+		
+		eq1.invert();
 		
 		assertTrue(eq1.equal(eq2));
 	}
@@ -110,5 +132,13 @@ public class TestEquation {
 		
 		assertEquals(15.0f, eq1.getValue("a") , 0.01f);
 		assertEquals(30.0f, eq1.getValue(Side.RIGHT) , 0.01f);
+	}
+	
+	@Test
+	public void toStringTest()
+	{
+		Equation eq1 = EquationBuilder.get("10a+5a=40.0-10.0");
+
+		assertEquals("+10,00a+5,00a=+40,00-10,00", eq1.toString());
 	}
 }

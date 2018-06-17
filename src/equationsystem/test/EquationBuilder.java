@@ -17,7 +17,7 @@ public class EquationBuilder {
 	}
 	
 	public static void main(String[] args) {
-		Equation a = EquationBuilder.get("5x=10");
+		Equation a = EquationBuilder.get("10a+5a=40.0-10.0");
 		System.out.println(a);
 	}
 }
