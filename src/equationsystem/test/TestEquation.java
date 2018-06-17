@@ -129,7 +129,7 @@ public class TestEquation {
 
 		eq1.simplify(Side.LEFT , "a");
 		eq1.simplify(Side.RIGHT);
-		
+
 		assertEquals(15.0f, eq1.getValue("a") , 0.01f);
 		assertEquals(30.0f, eq1.getValue(Side.RIGHT) , 0.01f);
 	}
