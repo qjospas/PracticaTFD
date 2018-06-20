@@ -53,9 +53,13 @@ public class Expression {
 	{
 		List<Term> newTerms= new ArrayList<Term>();
 		float newValue= 0.0f;
-		Boolean found = false;
+		boolean found = false;
+		boolean hasVariables = false;
+		boolean constantMode= name.isEmpty();
+		
 		for (Term term: this.terms)
 		{
+			
 			//System.out.println("Testing " + name + " in " + term.toString());
 			if ( term.hasName(name) )
 			{
@@ -66,21 +70,26 @@ public class Expression {
 			else
 			{
 				newTerms.add(term);
+				if (constantMode)
+				{
+					hasVariables= true;
+				}
 			}
 		}
 		if ( found )
 		{
 			Term newTerm;
-			if ( factor == 1.0f)
+			if ( !(name.isEmpty() && newValue == 0.0f && hasVariables  ) )
 			{
-				newTerm= new  Variable(newValue , name );
+				if (factor == 1.0f) {
+					newTerm = new Variable(newValue, name);
+				} else {
+					newTerm = new Constant(newValue * factor);
+				}
+				//System.out.println("Adding " + newTerm.toString());
+				newTerms.add(newTerm);
 			}
-			else
-			{
-				newTerm = new Constant(newValue*factor);
-			}
-			//System.out.println("Adding " + newTerm.toString());
-			newTerms.add(newTerm);
+
 		}
 		this.terms= newTerms;
 	}

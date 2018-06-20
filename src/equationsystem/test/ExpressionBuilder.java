@@ -9,6 +9,7 @@ import equationsystem.Variable;
 public class ExpressionBuilder {
 
 	public static Expression get(String expr) {
+		expr= expr.replaceAll("\\s+", "");
 		Expression expression= new Expression();
 		String[] words = expr.split("(?=[+-])");
 		for (String word: words)

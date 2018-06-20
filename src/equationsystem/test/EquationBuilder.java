@@ -7,7 +7,6 @@ public class EquationBuilder {
 
 	public static Equation get(String equation)
 	{
-		
 		String[] expressions = equation.split("=");
 		Expression ex1= ExpressionBuilder.get(expressions[0]);
 		Expression ex2= ExpressionBuilder.get(expressions[1]);
