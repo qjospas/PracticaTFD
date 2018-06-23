@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import equationsystem.test.EquationBuilder;
+
 public class EquationSystem {
 	
 	List<Equation> equations;
@@ -125,5 +127,23 @@ public class EquationSystem {
 			buffer.append(equation.toString());
 		}
 		return buffer.toString();
+	}
+	
+	
+	public static void main(String[] args) {
+		EquationSystem system= new EquationSystem();
+
+		Equation eq1= EquationBuilder.get("1x+1y= 3");
+		Equation eq2= EquationBuilder.get("2x-1y=0");
+		system.set(new EqualizationMethod());
+		system.add(eq1);
+		system.add(eq2);
+		system.resolve();
+		
+		System.out.println("La solucion es: ");
+		for (Equation eq: system.solutionMap.values())
+		{
+			System.out.println(eq);
+		}
 	}
 }

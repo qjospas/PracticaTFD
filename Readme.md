@@ -1,5 +1,7 @@
 #Práctica de TFD
 
+##Repositorio GitHub: https://github.com/qjospas/PracticaTFD
+
 Implementar primero las pruebas de un sistema de ecuaciones con un diseño proporcionado.
 
 Como **SolutionMethod* se ha implementado el **EqualizationMethod** (limitado a dos variables):
