@@ -55,12 +55,11 @@ public class Expression {
 		float newValue= 0.0f;
 		boolean found = false;
 		boolean hasVariables = false;
-		boolean constantMode= name.isEmpty();
 		
 		for (Term term: this.terms)
 		{
 			
-			//System.out.println("Testing " + name + " in " + term.toString());
+			//System.out.println("Testing '" + name + "' in " + term.toString());
 			if ( term.hasName(name) )
 			{
 				//System.out.println("Found");
@@ -70,23 +69,24 @@ public class Expression {
 			else
 			{
 				newTerms.add(term);
-				if (constantMode)
-				{
+			
 					hasVariables= true;
-				}
+				
 			}
 		}
 		if ( found )
 		{
 			Term newTerm;
-			if ( !(name.isEmpty() && newValue == 0.0f && hasVariables  ) )
+			if ( !(newValue == 0.0f && hasVariables  ) )
 			{
-				if (factor == 1.0f) {
+				if (factor == 1.0f && !name.isEmpty()) {
+
 					newTerm = new Variable(newValue, name);
+
 				} else {
 					newTerm = new Constant(newValue * factor);
 				}
-				//System.out.println("Adding " + newTerm.toString());
+				//System.out.println("Adding '" + newTerm.toString() + "'");
 				newTerms.add(newTerm);
 			}
 

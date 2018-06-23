@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
+//import equationsystem.EqualizationMethod;
 import equationsystem.Equation;
 import equationsystem.EquationSystem;
 
@@ -38,14 +39,17 @@ public class TestEquationSystem {
 	@Test
 	public void testResolve() {
 		EquationSystem system= new EquationSystem();
-		Equation eq1= EquationBuilder.get("-3x +5y +3 = +23");
-		Equation eq2= EquationBuilder.get("+6x -8y + 21 = +21");
+
+		Equation eq1= EquationBuilder.get("-3x +5y = +23");
+		Equation eq2= EquationBuilder.get("+6x -8y = +21");
 		//system.set(new EqualizationMethod());
 		system.add(eq1);
 		system.add(eq2);
 		system.resolve();
-		assertEquals("", system.toString());
+		assertEquals( -40.48f , system.getSolution("x"), 0.01f);
+		assertEquals( 33.33f , system.getSolution("y"), 0.01f);
 	}
+	
 	
 	
 }

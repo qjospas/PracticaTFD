@@ -7,26 +7,39 @@ import java.util.Set;
 
 public class EquationSystem {
 	
+	List<Equation> equations;
+	SolutionMethod method;
+	
 	public EquationSystem() {
-
+		equations= new ArrayList<Equation>();
 	}
 	
 	public void add( Equation equation )
 	{
+		equations.add(equation);
 	}
 	
 	public void set( SolutionMethod solutionMethod)
 	{
-		
+		method= solutionMethod;
 	}
 	
 	public void resolve()
 	{
+		if ( method != null)
+		{
+			method.set(this);
+			method.resolve();
+		}
 	}
 	
 	public Set<String> getNameSet()
 	{
 		Set<String> nameSet= new HashSet<String>();
+		for( Equation equation: equations)
+		{
+			nameSet.addAll(equation.getNameSet());
+		}
 		return nameSet;
 	}
 	
@@ -76,6 +89,14 @@ public class EquationSystem {
 	
 	public String toString()
 	{
-		return "";
+		StringBuffer buffer= new StringBuffer();
+		for( Equation equation: equations)
+		{
+			if(buffer.length() > 0) {
+				buffer.append("\n");
+			}
+			buffer.append(equation.toString());
+		}
+		return buffer.toString();
 	}
 }

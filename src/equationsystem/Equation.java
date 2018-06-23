@@ -77,26 +77,34 @@ protected Map<Side , Expression > expressionsMap;
 	
 	public float getValue(String name)
 	{
+		float value= 0.0f;
 		for (Side side: expressionsMap.keySet())
 		{
-			Expression expr= expressionsMap.get(side);
-			if ( expr.hasName(name) )
-			{
-				return expr.getValue(name);
-			}
+			return getValue(side,name);
 		}
-		return 0.0f;
+		return value;
+	}
+	
+	public float getValue(Side side , String name)
+	{
+		float value= 0.0f;
+
+		Expression expr= expressionsMap.get(side);
+		if ( expr.hasName(name) )
+		{
+			return expr.getValue(name);
+		}
+
+		return value;
 	}
 	
 	public float getValue(Side side)
 	{
 
 		Expression expr = expressionsMap.get(side);
-		if (expr.hasName("")) {
-			return expr.getValue("");
-		}
+		
+		return expr.getValue();
 
-		return 0.0f;
 	}	
 	
 	public Set<String> getNameSet()

@@ -18,6 +18,10 @@ public class NamesExpresionAnalyzer implements TermVisitor {
 
 	@Override
 	public void visit(Variable var) {
+		if ( var.name.isEmpty() )
+		{
+			System.out.println("kk");
+		}
 		nameSet.add(var.getName());
 	}
 

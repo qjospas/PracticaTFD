@@ -7,6 +7,7 @@ public class Variable extends Term {
 	protected String name;
 	public Variable(float value , String name) {
 		super(value);
+		if ( name.isEmpty()) throw new RuntimeException("kk");
 		this.name= name;
 	}
  
