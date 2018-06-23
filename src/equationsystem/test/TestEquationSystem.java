@@ -1,6 +1,7 @@
 package equationsystem.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,7 +9,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-//import equationsystem.EqualizationMethod;
+import equationsystem.EqualizationMethod;
 import equationsystem.Equation;
 import equationsystem.EquationSystem;
 
@@ -42,14 +43,33 @@ public class TestEquationSystem {
 
 		Equation eq1= EquationBuilder.get("-3x +5y = +23");
 		Equation eq2= EquationBuilder.get("+6x -8y = +21");
-		//system.set(new EqualizationMethod());
+		system.set(new EqualizationMethod());
 		system.add(eq1);
 		system.add(eq2);
 		system.resolve();
-		assertEquals( -40.48f , system.getSolution("x"), 0.01f);
-		assertEquals( 33.33f , system.getSolution("y"), 0.01f);
+		assertEquals( 48.16f , system.getSolution("x"), 0.01f);
+		assertEquals( 33.50f , system.getSolution("y"), 0.01f);
 	}
 	
+	@Test
+	public void testEqual() {
+		EquationSystem system1= new EquationSystem();
+		EquationSystem system2= new EquationSystem();
+		Equation eq1= EquationBuilder.get("-3x +5y = +23");
+		Equation eq2= EquationBuilder.get("+6x -8y = +21");
+		Equation eq3= EquationBuilder.get("-3x +5y -23 = 0");
+		Equation eq4= EquationBuilder.get("-8y = +21 -6x");
+		system1.set(new EqualizationMethod());
+		system2.set(new EqualizationMethod());
+		
+		system1.add(eq1);
+		system1.add(eq2);
+		
+		system2.add(eq4);
+		system2.add(eq3);
 	
+		assertTrue( system1.equal(system2) );
+
+	}
 	
 }

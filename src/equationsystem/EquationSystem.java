@@ -1,17 +1,21 @@
 package equationsystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class EquationSystem {
 	
 	List<Equation> equations;
 	SolutionMethod method;
+	Map<String,Equation> solutionMap;
 	
 	public EquationSystem() {
 		equations= new ArrayList<Equation>();
+		solutionMap= new HashMap<String,Equation>();
 	}
 	
 	public void add( Equation equation )
@@ -45,8 +49,10 @@ public class EquationSystem {
 	
 	public Equation get(int idx)
 	{
+		if ( idx < equations.size()) {
+			return equations.get(idx);
+		}
 		return null;
-		
 	}
 	
 	public Equation getLast( int before)
@@ -73,17 +79,38 @@ public class EquationSystem {
 	
 	public void setSolution(String firstName , Equation equation )
 	{
-		
+		solutionMap.put(firstName , equation);
 	}
 	
 	public float getSolution(String name)
 	{
-		return 0.0f;
+		float solution = 0.0f;
+		if (solutionMap.containsKey(name))
+		{
+			solution= solutionMap.get(name).getValue(Side.RIGHT);
+		}
+		return solution;
 	}
 	
 	public boolean equal(EquationSystem equationSystem)
 	{
-		return false;
+		this.resolve();
+		equationSystem.resolve();
+
+		if (solutionMap.size() != equationSystem.solutionMap.size())
+		{
+			return false;
+		}
+		
+		for (String name: solutionMap.keySet())
+		{
+			if ( !solutionMap.get(name).equal(equationSystem.solutionMap.get(name)) )
+			{
+				System.out.println(solutionMap.get(name) + "!="+ equationSystem.solutionMap.get(name));
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	
