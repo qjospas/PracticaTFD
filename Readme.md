@@ -1,10 +1,10 @@
-#Práctica de TFD
+# Práctica de TFD
 
-##Repositorio GitHub: https://github.com/qjospas/PracticaTFD
+## Repositorio GitHub: https://github.com/qjospas/PracticaTFD
 
 Implementar primero las pruebas de un sistema de ecuaciones con un diseño proporcionado.
 
-Como **SolutionMethod* se ha implementado el **EqualizationMethod** (limitado a dos variables):
+Como **SolutionMethod** se ha implementado el **EqualizationMethod** (limitado a dos variables):
 Con la equación del enunciado esta es la salida
 ```
 -3,00x+5,00y=+23,00
