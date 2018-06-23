@@ -1,10 +1,10 @@
-Práctica de TFD
+#Práctica de TFD
 
 Implementar primero las pruebas de un sistema de ecuaciones con un diseño proporcionado.
 
-Como SolutionMethod se ha implementado el EqualizationMethod (limitado a dos variables):
+Como **SolutionMethod* se ha implementado el **EqualizationMethod** (limitado a dos variables):
 Con la equación del enunciado esta es la salida
-
+```
 -3,00x+5,00y=+23,00
 +6,00x-8,00y=+21,00
 ----------------
@@ -33,3 +33,4 @@ Con la equación del enunciado esta es la salida
 ----------------
 +1,00x=+48,17
 ================
+```
